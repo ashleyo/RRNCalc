@@ -1,0 +1,66 @@
+﻿<Window x:Class="RPNCalc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="510" Width="510" Foreground="#FFDCDCEF">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="58" />
+            <Setter Property="Height" Value="58" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="9" />
+        </Style>
+    </Window.Resources>
+        <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF183D4B" Offset="0.778"/>
+                <GradientStop Color="#FF6A3D3D"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Display " Name="Display"   Grid.Column="0" Grid.Row="0" Height="56" Width="395" HorizontalAlignment="Center" Margin="9" Grid.ColumnSpan="5" Background="#FF1925C1" FontSize="32" TextAlignment="Right" />
+        <TextBlock Text="Empty"    Name="StackView" Grid.Column="5" Grid.Row="1" Height="395" Width="56" HorizontalAlignment="Center" Margin="9" Grid.RowSpan="5"    Background="#FFDCDCEF" FontSize="16" TextAlignment="Right" Foreground="#FF1925C1" />
+        <Button Content="CA"    Name="BCA"    Grid.Column="2" Grid.Row="1" Click="CtlGrpClick" Background="#FFE04010" />
+        <Button Content="CE"    Name="BCE"    Grid.Column="3" Grid.Row="1" Click="CtlGrpClick" Background="#FFE04010" />
+        <Button Content="DEL"   Name="BDel"   Grid.Column="4" Grid.Row="1" Click="CtlGrpClick" Background="#FFE04010" />
+        <Button Content="Inv"   Name="BInv"   Grid.Column="0" Grid.Row="1" Click="CtlGrpClick" Background="#FFE04010" />
+        <Button Content="7"     Name="B7"     Grid.Column="0" Grid.Row="2" Click="NumGrpClick" />
+        <Button Content="8"     Name="B8"     Grid.Column="1" Grid.Row="2" Click="NumGrpClick" />
+        <Button Content="9"     Name="B9"     Grid.Column="2" Grid.Row="2" Click="NumGrpClick" />
+        <Button Content="/"     Name="Bdiv"   Grid.Column="3" Grid.Row="2" Click="OpGrpClick" />
+        <Button Content="4"     Name="B4"     Grid.Column="0" Grid.Row="3" Click="NumGrpClick" />
+        <Button Content="5"     Name="B5"     Grid.Column="1" Grid.Row="3" Click="NumGrpClick" />
+        <Button Content="6"     Name="B6"     Grid.Column="2" Grid.Row="3" Click="NumGrpClick" />
+        <Button Content="*"     Name="Bmul"   Grid.Column="3" Grid.Row="3" Click="OpGrpClick" />
+        <Button Content="1"     Name="B1"     Grid.Column="0" Grid.Row="4" Click="NumGrpClick" />
+        <Button Content="2"     Name="B2"     Grid.Column="1" Grid.Row="4" Click="NumGrpClick" />
+        <Button Content="3"     Name="B3"     Grid.Column="2" Grid.Row="4" Click="NumGrpClick" />
+        <Button Content="-"     Name="Bsub"   Grid.Column="3" Grid.Row="4" Click="OpGrpClick" />
+        <Button Content="0"     Name="B0"     Grid.Column="0" Grid.Row="5" Click="NumGrpClick" />
+        <Button Content="."     Name="BP"     Grid.Column="1" Grid.Row="5" Click="DPClick" />
+        <Button Content="Enter" Name="BE"     Grid.Column="2" Grid.Row="5" Click="EnterClick" />
+        <Button Content="+"     Name="Badd"   Grid.Column="3" Grid.Row="5" Click="OpGrpClick" />
+        <Button Content="+/-"   Name="Bchs"   Grid.Column="4" Grid.Row="5" Click="OpGrpClick" Background="#FFB09010" />
+        <Button Content="tan"   Name="Btan"   Grid.Column="4" Grid.Row="4" Click="OpGrpClick" Background="#FFB09010" />
+        <Button Content="cos"   Name="Bcos"   Grid.Column="4" Grid.Row="3" Click="OpGrpClick" Background="#FFB09010" />
+        <Button Content="sin"   Name="Bsin"   Grid.Column="4" Grid.Row="2" Click="OpGrpClick" Background="#FFB09010" />
+        <Button Content="Pi"    Name="Bpi"    Grid.Column="1" Grid.Row="1" Click="ConGrpClick" Background="#FFB09010" />
+
+    </Grid>
+</Window>
