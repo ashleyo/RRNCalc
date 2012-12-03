@@ -6,12 +6,19 @@ using System.Text;
 
 namespace RPNCalc
 {
-    public delegate double binop(double a, double b);
-    public delegate double monop(double a);
+    //public delegate double binop(double a, double b);
+    //public delegate double monop(double a);
 
+    /// <summary>
+    /// A class that wraps a system Stack&lt;double&gt; to produce a stack like object.
+    /// Its main feature is that it does not throw exceptions, instead generating double.NaN when inconsistent.
+    /// </summary>
     class CalcEngine
     {
-        class SafeStack
+        public delegate double binop(double a, double b);
+        public delegate double monop(double a);
+
+        private class SafeStack
         {
             private Stack<double> S = new Stack<double>();
 

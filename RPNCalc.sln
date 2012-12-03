@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPNCalc", "RPNCalc\RPNCalc.csproj", "{CE29C846-3BFA-476D-8116-1F6C6D6B1864}"
 EndProject
 Global

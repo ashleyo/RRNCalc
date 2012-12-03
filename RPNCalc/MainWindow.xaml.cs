@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-
+using CE = RPNCalc.CalcEngine;
 namespace RPNCalc
 {
     public partial class MainWindow : Window
@@ -27,28 +27,20 @@ namespace RPNCalc
             B9.Tag = 9.0d;
             BP.Tag = null;
             BE.Tag = null;
-            Bchs.Tag = (monop)((a) => -a);
-            Badd.Tag = (binop)((a, b) => b + a);
-            Bmul.Tag = (binop)((a, b) => b * a);
-            Bdiv.Tag = (binop)((a, b) => b / a);
-            Bsub.Tag = (binop)((a, b) => b - a);
+            Bchs.Tag = (CE.monop)((a) => -a);
+            //note carefully order of operands in binary operations
+            Badd.Tag = (CE.binop)((a, b) => b + a);
+            Bmul.Tag = (CE.binop)((a, b) => b * a);
+            Bdiv.Tag = (CE.binop)((a, b) => b / a);
+            Bsub.Tag = (CE.binop)((a, b) => b - a);
 
             //For functions let's set labels too
             FnState = false;
             InvertFunctions();
 
-            //Bsin.Content = "sin";
-            //Bsin.Tag = (monop)((a) => Math.Sin(a));
-            //Bcos.Content = "cos";
-            //Bcos.Tag = (monop)((a) => Math.Cos(a));
-            //Btan.Content = "tan";
-            //Btan.Tag = (monop)((a) => Math.Tan(a));
-
             Bpi.Tag = Math.PI;
             Display.Text = "Ready";
-
         }
-
 
         private void InvertFunctions()
         {
@@ -56,20 +48,20 @@ namespace RPNCalc
             if (FnState)
             {
                 Bsin.Content = "sin";
-                Bsin.Tag = (monop)((a) => Math.Sin(a));
+                Bsin.Tag = (CE.monop)((a) => Math.Sin(a));
                 Bcos.Content = "cos";
-                Bcos.Tag = (monop)((a) => Math.Cos(a));
+                Bcos.Tag = (CE.monop)((a) => Math.Cos(a));
                 Btan.Content = "tan";
-                Btan.Tag = (monop)((a) => Math.Tan(a));
+                Btan.Tag = (CE.monop)((a) => Math.Tan(a));
             }
             else
             {
                 Bsin.Content = "asin";
-                Bsin.Tag = (monop)((a) => Math.Asin(a));
+                Bsin.Tag = (CE.monop)((a) => Math.Asin(a));
                 Bcos.Content = "acos";
-                Bcos.Tag = (monop)((a) => Math.Acos(a));
+                Bcos.Tag = (CE.monop)((a) => Math.Acos(a));
                 Btan.Content = "atan";
-                Btan.Tag = (monop)((a) => Math.Atan(a));
+                Btan.Tag = (CE.monop)((a) => Math.Atan(a));
             }
         
         }
@@ -99,7 +91,7 @@ namespace RPNCalc
 
             var v = (sender as Button).Tag;
 
-            if (v is binop) TheCalc.Reduce(v as binop); else TheCalc.Reduce(v as monop);
+            if (v is CE.binop) TheCalc.Reduce(v as CE.binop); else TheCalc.Reduce(v as CE.monop);
 
             Update();
         }
@@ -172,6 +164,15 @@ namespace RPNCalc
             scale.Reset();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <remarks>
+        /// A integral datatype with the following features: 
+        /// i) it may be incremented, Inc, or decremented, Dec, but will always be non-negative (0.Dec => 0)
+        /// ii) it may be forced to zero, Reset
+        /// iii) you may test whether it is zero or not, NZ returns True if the object's value is non-zero
+        /// iv) There is no method/property to obtain the evalue directly, but you can obtain its antilog (as a double), x.Antilog => 10**x 
+        /// </remarks>
         private struct Scale
         {
             int s;
